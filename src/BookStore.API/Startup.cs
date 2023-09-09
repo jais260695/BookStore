@@ -30,6 +30,8 @@ namespace BookStore.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddCors();
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
@@ -57,6 +59,8 @@ namespace BookStore.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthorization();
 
